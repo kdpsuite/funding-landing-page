@@ -1,20 +1,44 @@
 {
-  "name": "funding-landing-page",
+  "name": "kdp-creator-suite-frontend",
   "version": "1.0.0",
+  "description": "Frontend for the KDP Creator Suite — Next.js + React with Flask/PostgreSQL backend.",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3000",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p 3000",
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
-    "next": "14.2.3",
-    "react": "^18.3.0",
-    "react-dom": "^18.3.0"
+    "axios": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "tailwindcss": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest",
+    "lucide-react": "latest",
+    "@headlessui/react": "latest",
+    "@heroicons/react": "latest"
   },
   "devDependencies": {
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.3"
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
+  },
+  "keywords": [
+    "KDP",
+    "self-publishing",
+    "nextjs",
+    "react",
+    "flask",
+    "postgresql",
+    "creator-suite"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

@@ -16,7 +16,45 @@
     <h2>Support Us</h2>
     <button id="donateBtn">Donate Now</button>
   </section>
+<section id="subscribe">
+  <h2>Join Our Waitlist</h2>
+  <form id="waitlistForm">
+    <input 
+      type="email" 
+      id="email" 
+      name="email" 
+      placeholder="Enter your email" 
+      required
+    >
+    <button type="submit">Join Now</button>
+  </form>
+  <p id="statusMessage"></p>
+</section>
 
+<script>
+  document.getElementById("waitlistForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value;
+    const status = document.getElementById("statusMessage");
+
+    try {
+      const response = await fetch("https://formspree.io/f/your-form-id", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        status.textContent = "🎉 Thanks for joining our waitlist!";
+        e.target.reset();
+      } else {
+        status.textContent = "❌ Something went wrong. Try again.";
+      }
+    } catch {
+      status.textContent = "⚠️ Network error. Please try again later.";
+    }
+  });
+</script>
   <footer>
     <p>&copy; 2025 Your Name. All rights reserved.</p>
   </footer>

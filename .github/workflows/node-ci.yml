@@ -1,24 +1,29 @@
 name: Node CI
 
+# Trigger on push or PR to multiple branches
 on:
   push:
-    branches: [ main ]
+    branches: [ main, develop, feature/* ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, develop, feature/* ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+    # 1️⃣ Checkout the repository
     - name: Checkout code
       uses: actions/checkout@v3
 
+    # 2️⃣ Setup Node.js
     - name: Set up Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20' # or your version
+        node-version: '20' # Change to your project’s Node version
+        cache: 'npm'       # Automatically caches npm dependencies
 
+    # 3️⃣ Install dependencies safely
     - name: Install dependencies
       run: |
         if [ -f package-lock.json ]; then
@@ -29,5 +34,14 @@ jobs:
           npm install
         fi
 
+    # 4️⃣ Run linter (optional)
+    - name: Run linter
+      run: npm run lint || echo "Lint warnings present"
+
+    # 5️⃣ Run tests
+    - name: Run tests
+      run: npm test
+
+    # 6️⃣ Build the project
     - name: Build project
       run: npm run build
